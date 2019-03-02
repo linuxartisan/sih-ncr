@@ -26,6 +26,9 @@ Route::get('/home', 'HomeController@index')->name('home');
  * Controller routes
  */
 Route::resource('users', 'UserController');
+Route::resource('companies', 'CompanyController');
+Route::resource('components', 'ComponentController');
+
 
 Route::get('users/password/change', 'UserController@showPasswordChangeForm');
 Route::post('users/password/change', 'UserController@changePassword');

@@ -58,11 +58,11 @@
                           </li>
                         </ul>
                       </li>
-                      <li class="{{ $current_path == 'academic_terms' ? 'current-page' : '' }}">
-                        <a href="#">Academic Term</a>
+                      <li class="{{ $current_path == 'companies' ? 'current-page' : '' }}">
+                        <a href="{{ action('CompanyController@index') }}">Company</a>
                       </li>
-                      <li class="{{ $current_path == 'course_deliverables' ? 'current-page' : '' }}">
-                        <a href="#">Course Deliverable</a>
+                      <li class="{{ $current_path == 'components' ? 'current-page' : '' }}">
+                        <a href="{{ action('ComponentController@index') }}">Components</a>
                       </li>
                       <!-- more links heres -->
                     </ul>
