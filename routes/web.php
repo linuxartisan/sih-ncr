@@ -15,12 +15,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/show', function () {
+    return view('components.show');
+});
+
+Route::get('/find_components', function () {
+    return view('repair_agencies.repair_list');
+});
+
+
+
 // Auth::routes();
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('components/show', 'ComponentController@show');
+
+
+
 
 /**
  * Controller routes
