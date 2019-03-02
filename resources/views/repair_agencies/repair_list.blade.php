@@ -278,7 +278,7 @@
 <!-- Toggle Filter (Mobile)-->
     
     
-    <script>
+<script>
 function openNav() {
     document.getElementById("myToggleSidebar").style.width = "250px";
     document.getElementById("ToggleBtn").style.marginLeft = "0px";

@@ -21,7 +21,7 @@
         <div class="col-md-4 col-sm-4 col-xs-12">
             {!! Form::select('type', $product_type, null,
                     [
-                        'class' => ['form-control'],
+                        'class' => 'form-control select2',
                         'id' => 'type',
                         'placeholder' => 'Select'
                     ]) 

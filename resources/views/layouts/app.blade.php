@@ -51,6 +51,7 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Basic <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                        @if(Auth::User()->type == 0)
                       <li><a>Setup <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                           <li class="{{ $current_path == 'users' ? 'current-page' : '' }}">
@@ -58,6 +59,7 @@
                           </li>
                         </ul>
                       </li>
+                        @endif
                       <li class="{{ $current_path == 'companies' ? 'current-page' : '' }}">
                         <a href="{{ action('CompanyController@index') }}">Company</a>
                       </li>

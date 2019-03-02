@@ -25,4 +25,10 @@ class Component extends Model
     {
         return $this->belongsToMany(Product::class, 'product_component_assoc');
     }
+    
+     public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+    
 }
