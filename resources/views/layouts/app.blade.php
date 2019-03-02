@@ -70,9 +70,9 @@
                       <!-- more links heres -->
                     </ul>
                   </li>
-                  <li class="{{ $current_path == 'students' ? 'current-page' : '' }}">
-                    <a href="#">
-                      <i class="fa fa-user"></i> Students
+                  <li class="{{ $current_path == 'examples/charts' ? 'current-page' : '' }}">
+                    <a href="{{ url('examples/charts') }}">
+                      <i class="fa fa-user"></i> Charts
                     </a>
                   </li>
                   <!-- more links here -->
@@ -184,7 +184,7 @@
     @yield('page_script')
 
     <!-- Custom Theme Scripts -->
-    <script src="{{ URL::asset('js/custom.min.js') }}"></script> <!-- actual file build/js/custom.js -->
+    <script src="{{ URL::asset('build/js/custom.js') }}"></script>
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
 
     <script type="text/javascript">

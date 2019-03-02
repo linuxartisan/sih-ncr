@@ -31,5 +31,10 @@ Route::resource('components', 'ComponentController');
 Route::resource('products', 'ProductController');
 
 
+// charts
+Route::get('examples/charts', function()	{
+	return view('examples.charts.morris');
+});
+
 Route::get('users/password/change', 'UserController@showPasswordChangeForm');
 Route::post('users/password/change', 'UserController@changePassword');
