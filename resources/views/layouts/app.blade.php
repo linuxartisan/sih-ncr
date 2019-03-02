@@ -64,6 +64,9 @@
                       <li class="{{ $current_path == 'components' ? 'current-page' : '' }}">
                         <a href="{{ action('ComponentController@index') }}">Components</a>
                       </li>
+                      <li class="{{ $current_path == 'products' ? 'current-page' : '' }}">
+                        <a href="{{ action('ProductController@index') }}">Products</a>
+                      </li>
                       <!-- more links heres -->
                     </ul>
                   </li>
