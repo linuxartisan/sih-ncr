@@ -82,7 +82,7 @@ class ComponentController extends Controller
      */
     public function show(Component $component)
     {
-        //
+        return view('components.show', compact('component'));
     }
 
     /**
