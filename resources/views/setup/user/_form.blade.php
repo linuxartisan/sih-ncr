@@ -7,7 +7,7 @@
                     [
                         'class' => ['form-control'],
                         'id' => 'identifier',
-                        'placeholder' => 'T001',
+                        'placeholder' => 'M001',
                         'autocomplete' => 'off'
                     ])
                 !!}
@@ -63,15 +63,14 @@
 <div class="card-body card-block">
 
     <div class="row form-group">
-        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="role_id">Role(s)
+        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="role_id">Type
             <span class="required">*</span>
         </label>
         <div class="col-md-4 col-sm-4 col-xs-12">
-          {!! Form::select('role_id[]', $role_list, null,
+          {!! Form::select('type_id', $type_list, null,
                 [
                     'class' => 'form-control select2',
-                    'id' => 'role_id',
-                    'multiple' => 'multiple'
+                    'id' => 'type_id'
                 ])
             !!}
         </div>

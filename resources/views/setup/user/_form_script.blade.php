@@ -3,8 +3,8 @@
     $(document).ready(function() {
 
         // in edit form, for preselecting roles
-        @if(isset($staff))
-            $('#role_id').val({{ $staff_roles }}).change();
+        @if(isset($user))
+            $('#type_id').val({{ $user_type }}).change();
         @endif
 
         // search box display condition
@@ -16,7 +16,7 @@
             $(this).valid(); // trigger validation on this element
         });
 
-        var $staffForm = $('#staff-form').validate({
+        var $userForm = $('#user-form').validate({
 
             errorClass: "parsley-error",
             validClass: "parsley-success",
@@ -47,7 +47,7 @@
             // Messages for form validation
             messages: {
                 name: {
-                    required: 'Please enter the staff name'
+                    required: 'Please enter the user name'
                 },
                 "role_id[]": {
                     required: 'Please select at least one role'

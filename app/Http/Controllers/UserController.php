@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Http\Requests\UserRequest;
 use App\Workers\Services\UserService;
 
 use Illuminate\Http\Request;
@@ -15,13 +16,25 @@ use Illuminate\Support\Facades\Log;
 class UserController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        // $this->middleware('role:admin', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $users = User::orderBy('identifier')->get();
+        return view('setup.user.list', compact('users'));
     }
 
     /**
@@ -31,27 +44,43 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        // $role_list = Role::pluck('name', 'id');
+        $type_list = config('usertype');
+
+        return view('setup.user.create', compact('type_list'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\UserRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        $input = $request->all();
+
+        $user = new User;
+
+        $service = new UserService;
+        $status = $service->storeUser($user, $input);
+
+        if($status) {
+            Session::flash('success', 'User created successfully.');
+        } else {
+            Session::flash('error', 'Failed to create User. Please try again.');
+        }
+
+        return redirect(action('UserController@index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
         //
     }
@@ -59,35 +88,66 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        // get the associated roles
+        // $user_roles = $user->roles()->pluck('id');
+
+        // $role_list = Role::pluck('name', 'id');
+        $user_type = $user->type;
+        $type_list = config('usertype');
+
+        return view(
+            'setup.user.edit',
+            compact('user', 'type_list', 'user_type')
+        );
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  App\Http\Requests\UserRequest  $request
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, User $user)
     {
-        //
+        $input = $request->all();
+
+        $service = new UserService;
+        $status = $service->updateUser($user, $input);
+
+        if($status) {
+            Session::flash('success', 'User updated successfully.');
+        } else {
+            Session::flash('error', 'Failed to update User. Please try again.');
+        }
+
+        return redirect(action('UserController@edit', $user->id));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $service = new UserService;
+
+        $status = $service->deleteUser($user);
+
+        if($status) {
+            Session::flash('success', 'User deleted successfully.');
+        } else {
+            Session::flash('error', 'Failed to delete User. Please try again.');
+        }
+
+        return redirect(action('UserController@index'));
     }
 
     /**

@@ -101,7 +101,7 @@ class UserRepository extends Repository
         $user->name = $input['name'];
         $user->email = $input['email'];
         $user->mobile = $input['mobile'];
-        $user->type = $input['type'];
+        $user->type = $input['type_id'];
     }
 
 }

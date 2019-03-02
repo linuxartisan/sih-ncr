@@ -1,4 +1,4 @@
-@extends('layouts._staff_')
+@extends('layouts.app')
 
 @section('page_styles')
   <!-- Datatables -->
@@ -12,7 +12,8 @@
 @section('breadcrumbs')
     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
     <li class="breadcrumb-item">Basic</li>
-    <li class="breadcrumb-item">Staff</li>
+    <li class="breadcrumb-item">Setup</li>
+    <li class="breadcrumb-item">Users</li>
 @endsection
 
 @section('content')
@@ -24,11 +25,11 @@
       <div class="x_title">
         <div class="row">
           <div class="col-xs-8">
-            <h2>Staff <small>List</small></h2>
+            <h2>User <small>List</small></h2>
           </div>
           <div class="col-xs-4">
             <div class="pull-right">
-              <a href="{{ action('StaffController@create') }}" type="button" class="btn btn-primary">
+              <a href="{{ action('UserController@create') }}" type="button" class="btn btn-primary">
                 <i class="fa fa-plus"></i> Create New
               </a>
             </div>
@@ -38,7 +39,7 @@
       </div>
       <div class="x_content">
         
-        <table id="dt_staff_list" class="table table-bordered" style="width: 100%;">
+        <table id="dt_user_list" class="table table-bordered" style="width: 100%;">
           <thead>
             <tr>
               <th>Identifier</th> <!-- 0 -->
@@ -50,6 +51,25 @@
               <th></th> <!-- 6 -->
             </tr>
           </thead>
+
+          <tbody>
+            @foreach($users as $user)
+              <tr>
+                <td>{{ $user->identifier }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->mobile }}</td>
+                <td>{{ $user->created_at }}</td>
+                <td>{{ $user->updated_at }}</td>
+                <td>
+                  <a href="{{ action('UserController@edit', $user->id) }}"
+                     data-toggle="tooltip" data-placement="right" title="Edit">
+                    <i class="fa fa-lg fa-edit"></i>
+                  </a>
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
         </table>
 
       </div>
@@ -77,32 +97,19 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
-      var table = $('#dt_staff_list').DataTable({
+      var table = $('#dt_user_list').DataTable({
         "order": [[1, 'asc'], [0, 'asc']],
         "responsive": true,
-        "processing": true,
-        "serverSide": true,
-        "ajax": {
-          "url": "{{ action('StaffController@getDTStaffsAjax') }}",
-          "type": "POST",
-          "data":{ _token: "{{csrf_token()}}"}
-        },
-        "columns": [
-          { data: 'identifier', name: 'identifier' },
-          { data: 'name', name: 'name' },
-          { data: 'email', name: 'email' },
-          { data: 'mobile', name: 'mobile' },
-          { data: 'created_at', name: 'created_at', orderable: false, searchable: false },
-          { data: 'updated_at', name: 'updated_at', orderable: false, searchable: false },
-          { data: 'action', name: 'action', orderable: false, searchable: false },
-        ],
         "columnDefs": [
+          {
+            "targets": [4, 5],
+            "orderable": false,
+            "searchable": false
+          },
           { "className": 'none', "targets": [4, 5] }, // don't display as column, show in child row
           { "responsivePriority": 1, "targets": [0, 1, -1] }, // -1 is last column
           { "responsivePriority": 2, "targets": [2, 3] },
         ],
-        "pageLength": 25,
-        "searchDelay": {{ env('DT_SEARCH_DELAY', 750) }},
       });
 
       $('body').tooltip({selector: '[data-toggle="tooltip"]'});

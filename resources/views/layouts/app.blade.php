@@ -47,14 +47,14 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>Staff</h3>
+                <h3>Admin</h3>
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Basic <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a>Setup <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                          <li class="{{ $current_path == 'roles' ? 'current-page' : '' }}">
-                            <a href="#">Roles</a>
+                          <li class="{{ $current_path == 'users' ? 'current-page' : '' }}">
+                            <a href="{{ action('UserController@index') }}">Users</a>
                           </li>
                         </ul>
                       </li>

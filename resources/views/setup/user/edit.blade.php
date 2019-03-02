@@ -1,4 +1,4 @@
-@extends('layouts._staff_')
+@extends('layouts.app')
 
 @section('page_styles')
     <!-- Select2 -->
@@ -8,7 +8,7 @@
 @section('breadcrumbs')
     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
     <li class="breadcrumb-item">Basic</li>
-    <li class="breadcrumb-item"><a href="{{ action('StaffController@index') }}">Staff</a></li>
+    <li class="breadcrumb-item"><a href="{{ action('UserController@index') }}">User</a></li>
     <li class="breadcrumb-item active" aria-current="page">Edit</li>
 @endsection
 
@@ -29,17 +29,17 @@
     <div class="col-lg-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Staff <small>Edit</small></h2>
+                <h2>User <small>Edit</small></h2>
             <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                {!! Form::model($staff,
-                                ['action' => ['StaffController@update', $staff->id],
+                {!! Form::model($user,
+                                ['action' => ['UserController@update', $user->id],
                                 'method' => 'patch',
                                 'class' => ['form-horizontal'],
-                                'id' => 'staff-form']) !!}
+                                'id' => 'user-form']) !!}
 
-                    @include('staff.setup.staff._form')
+                    @include('setup.user._form')
 
                     <div class="row form-group">
                         <div class="col-md-4 col-sm-6 col-xs-10 col-md-offset-2">
@@ -60,14 +60,14 @@
     <div class="col-lg-6">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Staff <small>Delete</small></h2>
+                <h2>User <small>Delete</small></h2>
             <div class="clearfix"></div>
             </div>
             <div class="x_content">
                 <div class="note">
                     <p>Note: Record once deleted can not be obtained again.</p>
                 </div>
-                {!! Form::open(['action' => ['StaffController@destroy', $staff->id],
+                {!! Form::open(['action' => ['UserController@destroy', $user->id],
                                 'method' => 'delete',
                                 'onsubmit' => 'return show_alert();',
                                 'class' => 'form-horizontal']) !!}
@@ -97,11 +97,11 @@
 
 @section('page_script')
 
-    @include('staff.setup.staff._form_script')
+    @include('setup.user._form_script')
 
     <script type="text/javascript">
         function show_alert () {
-            return confirm('Delete this Staff?');
+            return confirm('Delete this User?');
         }
     </script>
 
