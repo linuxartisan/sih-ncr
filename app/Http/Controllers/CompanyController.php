@@ -58,7 +58,7 @@ class CompanyController extends Controller
     public function store(CompanyRequest $request)
     {
         $input = $request->all();
-
+        
         $companies = new Company;
 
         $service = new CompanyService;

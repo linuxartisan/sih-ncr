@@ -29,12 +29,25 @@ class ComponentRepository extends Repository
     * @param  array $input
     * @return boolean
     */
-    public function storeComponent(Component &$component, $input)
+    public function storeComponent(Component &$component, $request)
     {
-        $this->populateFields($component, $input);
+        $this->populateFields($component, $request);
+
+        $component->save();
+
+        $this->storeImage($component, $request);
+        // $relative_path = '/app/public/images/component/';
+        // $imageName = $component->id . '.' . 
+        //     $request->file('image')->getClientOriginalExtension();
+       
+        // $image_path = storage_path() . $relative_path;
+        // $request->file('image')->move($image_path, $imageName);
+
+        // $full_file_name = $relative_path . $imageName;
+
+        // $component->image_path = $full_file_name;
 
         $status = $component->save();
-
         return $status;
     }
 
@@ -45,9 +58,11 @@ class ComponentRepository extends Repository
     * @param  array $input
     * @return boolean
     */
-    public function updateComponent(Component &$component, $input)
+    public function updateComponent(Component &$component, $request)
     {
-        $this->populateFields($component, $input);
+        $this->populateFields($component, $request);
+
+        $this->storeImage($component, $request);
 
         $status = $component->update();
 
@@ -65,12 +80,29 @@ class ComponentRepository extends Repository
      * @param  \App\Component  &$component
      * @param  array  $input
      */
-    protected function populateFields(Component &$component, $input)
+    protected function populateFields(Component &$component, $request)
     {
         
-        $component->name = $input['name'];
-        $component->image_path = $input['image_path'];
-        
+        $component->name = $request->get('name');
+        // $component->image_path = $input['image_path'];
+
+    }
+
+    protected function storeImage(Component &$component, $request)
+    {
+        // $relative_path = '/images/app/component/';
+        $relative_path = '/app/public/images/component/';
+        $imageName = $component->id . '.' . 
+            $request->file('image')->getClientOriginalExtension();
+       
+        // $image_path = public_path() . $relative_path;
+        $image_path = storage_path() . $relative_path;
+
+        $request->file('image')->move($image_path, $imageName);
+
+        $full_file_name = $relative_path . $imageName;
+
+        $component->image_path = $full_file_name;
     }
 
 }

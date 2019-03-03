@@ -57,7 +57,9 @@
               <tr>
                 
                 <td>{{ $component->name }}</td>
-                <td>{{ $component->image_path }}</td>
+                <td> <a href="{{ action('ComponentController@showImage', $component->id) }}">
+                    Image
+                  </a></td>
                 
                 <td>{{ $component->created_at }}</td>
                 <td>{{ $component->updated_at }}</td>

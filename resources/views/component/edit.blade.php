@@ -37,6 +37,7 @@
                                 ['action' => ['ComponentController@update', $component->id],
                                 'method' => 'patch',
                                 'class' => ['form-horizontal'],
+                                'files'=>'true',
                                 'id' => 'component-form']) !!}
 
                     @include('component._form')
