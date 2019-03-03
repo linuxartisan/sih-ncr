@@ -42,6 +42,8 @@ Route::resource('users', 'UserController');
 Route::resource('companies', 'CompanyController');
 Route::resource('components', 'ComponentController');
 Route::resource('products', 'ProductController');
+Route::resource('reviews', 'ReviewController');
+Route::resource('forums', 'ForumController');
 
 
 // charts
@@ -51,3 +53,8 @@ Route::get('examples/charts', function()	{
 
 Route::get('users/password/change', 'UserController@showPasswordChangeForm');
 Route::post('users/password/change', 'UserController@changePassword');
+
+Route::get('component/{component}/image', 'ComponentController@showImage');
+
+// image routes
+Route::get('images/components/{component}', 'ComponentController@getImage');

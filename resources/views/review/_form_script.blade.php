@@ -18,23 +18,20 @@
 
             // Rules for form validation
             rules: {
-                name: {
+                component_id: {
                     required: true,
-                    maxlength: 100
                 },
-                lifetime: {
-                    maxlength: 255
-                },
-                image: {
-                    // required: true,
-                }
 
+                rating: {
+                    required: true,
+                    maxlength: 255
+                }
             },
 
             // Messages for form validation
             messages: {
                 name: {
-                    required: 'Please enter the component name'
+                    required: 'Please enter the product name'
                 },
             },
 

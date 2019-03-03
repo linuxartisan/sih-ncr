@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Component;
+
 use App\Product;
-use Illuminate\Http\ComponentRequest;
+
+use App\Http\Requests\ComponentRequest;
+
 use App\Workers\Services\ComponentService;
 
 use Illuminate\Http\Request;
-
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -48,6 +51,8 @@ class ComponentController extends Controller
          // $role_list = Role::pluck('name', 'id');
          $type_list = config('componenttype');
 
+
+     
          return view('component.create', compact('type_list'));
     }
 
@@ -57,14 +62,15 @@ class ComponentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ComponentRequest $request)
     {
-        $input = $request->all();
-
+        // $input = $request->all();
+        // dd($request->file('image'));
         $component = new Component;
 
+        
         $service = new ComponentService;
-        $status = $service->storeComponent($component, $input);
+        $status = $service->storeComponent($component, $request);
 
         if($status) {
             Session::flash('success', 'Component created successfully.');
@@ -99,6 +105,7 @@ class ComponentController extends Controller
         return view(
             'component.edit',
             compact('component')
+
         );
     }
 
@@ -109,12 +116,12 @@ class ComponentController extends Controller
      * @param  \App\Component  $component
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Component $component)
+    public function update(ComponentRequest $request, Component $component)
     {
-        $input = $request->all();
-
+        // $input = $request->all();
+        // dd($request->file('image'));
         $service = new ComponentService;
-        $status = $service->updateComponent($component, $input);
+        $status = $service->updateComponent($component, $request);
 
         if($status) {
             Session::flash('success', 'Component updated successfully.');
@@ -144,6 +151,7 @@ class ComponentController extends Controller
 
         return redirect(action('ComponentController@index'));
     }
+
     
     public function associateComponents(Request $request, Product $product)
     {
@@ -170,4 +178,30 @@ class ComponentController extends Controller
         $associated_product_ids = $component->products()->pluck('product_id');
         return view('manufacturer.component_products', compact('component','product_list', 'associated_product_ids' ));
     }
+
+
+    /**
+     * Shows the image
+     */
+    public function showImage(Component $component)
+    {
+
+        return view(
+            'component.showImage',
+            compact('component')
+
+           );
+    }
+
+    /**
+     * Retrueves the image
+     */
+    public function getImage(Component $component)
+    {
+        return Image::make(storage_path() . $component->image_path)->response();
+    }
+
+
 }
+
+ 

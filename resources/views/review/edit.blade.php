@@ -8,7 +8,7 @@
 @section('breadcrumbs')
     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
     <li class="breadcrumb-item">Basic</li>
-    <li class="breadcrumb-item"><a href="{{ action('ComponentController@index') }}">Component</a></li>
+    <li class="breadcrumb-item"><a href="{{ action('ReviewController@index') }}">Review</a></li>
     <li class="breadcrumb-item active" aria-current="page">Edit</li>
 @endsection
 
@@ -29,22 +29,17 @@
     <div class="col-lg-12">
         <div class="x_panel">
             <div class="x_title">
-                
-                <h2>Component <small>Edit</small></h2>
-                <div class="pull-right">
-                 <a class="btn btn-primary" href="{{ action('ComponentController@associateProductsShow', $component->id) }}">Associate Products</a>
-                </div>
+                <h2>Review <small>Edit</small></h2>
             <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                {!! Form::model($component,
-                                ['action' => ['ComponentController@update', $component->id],
+                {!! Form::model($review,
+                                ['action' => ['ReviewController@update', $review->id],
                                 'method' => 'patch',
                                 'class' => ['form-horizontal'],
-                                'files'=>'true',
-                                'id' => 'component-form']) !!}
+                                'id' => 'review-form']) !!}
 
-                    @include('component._form')
+                    @include('review._form')
 
                     <div class="row form-group">
                         <div class="col-md-4 col-sm-6 col-xs-10 col-md-offset-2">
@@ -65,14 +60,14 @@
     <div class="col-lg-6">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Component <small>Delete</small></h2>
+                <h2>Review <small>Delete</small></h2>
             <div class="clearfix"></div>
             </div>
             <div class="x_content">
                 <div class="note">
                     <p>Note: Record once deleted can not be obtained again.</p>
                 </div>
-                {!! Form::open(['action' => ['ComponentController@destroy', $component->id],
+                {!! Form::open(['action' => ['ReviewController@destroy', $review->id],
                                 'method' => 'delete',
                                 'onsubmit' => 'return show_alert();',
                                 'class' => 'form-horizontal']) !!}
@@ -102,11 +97,11 @@
 
 @section('page_script')
 
-    @include('component._form_script')
+    @include('review._form_script')
 
     <script type="text/javascript">
         function show_alert () {
-            return confirm('Delete this Component?');
+            return confirm('Delete this Review?');
         }
     </script>
 

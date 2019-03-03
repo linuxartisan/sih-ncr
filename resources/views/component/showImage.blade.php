@@ -34,22 +34,7 @@
             </div>
             <div class="x_content">
                 <br />
-                {!! Form::open(['action' => 'ComponentController@store',
-                                'method' => 'post',
-                                'class' => ['form-horizontal'],
-                                'id' => 'component-form',
-                                'files'=>'true',
-                                'autocomplete' => 'off']) !!}
-
-                    @include('component._form')
-
-                    <div class="row form-group">
-                        <div class="col-md-4 col-sm-6 col-xs-10 col-md-offset-2">
-                            <input type="reset" class="btn btn-default" value="Reset" />
-                            <input type="submit" class="btn btn-success" id="btnSave" value="Create" />
-                        </div>
-                    </div>
-                {!! Form::close() !!}
+              <img src="{{ action('ComponentController@getImage', $component->id) }}" width="150px" height="auto">
             </div>
         </div>
     </div>

@@ -20,17 +20,19 @@
             <span class="required">*</span>
         </label>
         <div class="col-md-4 col-sm-4 col-xs-12">
-            {!! Form::text('image_path', null,
+            {!! Form::file('image', null,
                     [
                         'class' => ['form-control'],
-                        'id' => 'image_path',
-                        'placeholder' => '',
-                        'autocomplete' => 'off'
+                        'id' => 'image'
                     ]) 
             !!}
                 
                
         </div>
+        
+    </div>
+    
+    <div class="row form-group">
          <label class="control-label col-md-2 col-sm-2 col-xs-12" for="lifetime">Life Time
             <span class="required">*</span>
         </label>

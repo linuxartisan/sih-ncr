@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class CompanyRequest extends FormRequest
+class ComponentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -34,9 +34,9 @@ class CompanyRequest extends FormRequest
                'max:100',
                Rule::unique('components', 'name')->ignore(@$component->id)
            ],
-           'image_path' => [
-               'max:255'
-           ]
+           'image' => [
+               'image' => 'mimes:jpeg,bmp,png',
+           ],
             'lifetime' => [
                'max:255'
            ]

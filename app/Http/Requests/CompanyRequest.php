@@ -33,7 +33,7 @@ class CompanyRequest extends FormRequest
                'required',
                'max:100',
                Rule::unique('companies', 'name')->ignore(@$company->id)
-           ],
+           ]
        ];
     }
 }

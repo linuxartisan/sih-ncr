@@ -60,24 +60,39 @@
                         </ul>
                       </li>
                         @endif
-                      <li class="{{ $current_path == 'companies' ? 'current-page' : '' }}">
-                        <a href="{{ action('CompanyController@index') }}">Company</a>
-                      </li>
-                      <li class="{{ $current_path == 'components' ? 'current-page' : '' }}">
-                        <a href="{{ action('ComponentController@index') }}">Components</a>
-                      </li>
-                      <li class="{{ $current_path == 'products' ? 'current-page' : '' }}">
-                        <a href="{{ action('ProductController@index') }}">Products</a>
-                      </li>
-
+                      
                       <!-- more links heres -->
                     </ul>
                   </li>
-                  <li class="{{ $current_path == 'examples/charts' ? 'current-page' : '' }}">
+                    <li class="{{ $current_path == 'companies' ? 'current-page' : '' }}">
+                        <a href="{{ action('CompanyController@index') }}">
+                            <i class="fa fa-user"> </i>
+                        Company</a>
+                      </li>
+                      
+                      <li class="{{ $current_path == 'components' ? 'current-page' : '' }}">
+                        <a href="{{ action('ComponentController@index') }}"><i class="fa fa-user"> </i>Components</a>
+                      </li>
+                      
+                      <li class="{{ $current_path == 'products' ? 'current-page' : '' }}">
+                        <a href="{{ action('ProductController@index') }}"><i class="fa fa-user"> </i>Products</a>
+                      </li>
+
+                      <li class="{{ $current_path == 'reviews' ? 'current-page' : '' }}">
+                        <a href="{{ action('ReviewController@index') }}"><i class="fa fa-user"> </i>Review</a>
+                      </li>
+
+                      <li class="{{ $current_path == 'forums' ? 'current-page' : '' }}">
+                        <a href="{{ action('ForumController@index') }}"><i class="fa fa-user"> </i>Forum</a>
+                      </li>
+                        <li class="{{ $current_path == 'find_components' ? 'current-page' : '' }}">
+                        <a href="{{ action('FilterController@filterShow') }}"><i class="fa fa-user"> </i>Search Components</a>
+                      </li>
+                  {{--<li class="{{ $current_path == 'examples/charts' ? 'current-page' : '' }}">
                     <a href="{{ url('examples/charts') }}">
                       <i class="fa fa-user"></i> Charts
                     </a>
-                  </li>
+                  </li>--}}
                   <!-- more links here -->
                 </ul>
               </div>

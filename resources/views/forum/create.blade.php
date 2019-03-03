@@ -9,7 +9,7 @@
     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
     <li class="breadcrumb-item">Basic</li>
     <li class="breadcrumb-item">Setup</li>
-    <li class="breadcrumb-item"><a href="{{ action('ComponentController@index') }}">Component</a></li>
+    <li class="breadcrumb-item"><a href="{{ action('ForumController@index') }}">Forum</a></li>
     <li class="breadcrumb-item active" aria-current="page">New</li>
 @endsection
 
@@ -29,19 +29,18 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Component <small>Create</small></h2>
+                <h2>Forum <small>Create</small></h2>
             <div class="clearfix"></div>
             </div>
             <div class="x_content">
                 <br />
-                {!! Form::open(['action' => 'ComponentController@store',
+                {!! Form::open(['action' => 'ForumController@store',
                                 'method' => 'post',
                                 'class' => ['form-horizontal'],
-                                'id' => 'component-form',
-                                'files'=>'true',
+                                'id' => 'forum-form',
                                 'autocomplete' => 'off']) !!}
 
-                    @include('component._form')
+                    @include('forum._form')
 
                     <div class="row form-group">
                         <div class="col-md-4 col-sm-6 col-xs-10 col-md-offset-2">
@@ -67,6 +66,6 @@
 
 @section('page_script')
 
-    @include('component._form_script')
+    @include('forum._form_script')
 
 @endsection

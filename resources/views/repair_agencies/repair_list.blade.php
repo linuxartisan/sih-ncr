@@ -127,11 +127,12 @@
                   <div class="x_panel">
                       <div class="x_content">
   
-                          <form action="/action_page.php" method="post">
+                             
+                          
                               
-                              {!! Form::open(['action' => 'ComponentController@store',
+                              {!! Form::open(['action' => 'FilterController@filterGet',
                                 'method' => 'post',
-                                'class' => ['form-horizontal'],
+                                
                                 'id' => 'component-form',
                                 'autocomplete' => 'off']) !!}
                               
@@ -140,10 +141,10 @@
                                 <h3>Device</h3>
                                 <div class="checkbox">
                                   <label>
-                                    <input type="checkbox" class="flat"  name="laptop" value="1"> laptop
+                                    <input type="checkbox" class="flat" name="device[]" value="1"> laptop
                                   </label> <br> <br>
                                   <label>
-                                    <input type="checkbox" class="flat"  name="mobile"> mobile
+                                    <input type="checkbox" class="flat" name="device[]" value="0" > mobile
                                   </label>
                                 </div>
                             </div> <br>
@@ -151,16 +152,16 @@
                                 <h3>Device Type</h3>
                                 <div class="checkbox">
                                   <label>
-                                    <input type="checkbox" class="flat"  name="lenovo"> Lenovo
+                                    <input type="checkbox" class="flat" name="device_type[]" value="lenovo"> Lenovo
                                   </label> <br> <br>
                                   <label>
-                                    <input type="checkbox" class="flat"  name="dell"> Dell
+                                    <input type="checkbox" class="flat" name="device_type[]" value="dell"> Dell
                                   </label>  <br> <br>
                                     <label>
-                                    <input type="checkbox" class="flat"  name="xiomi"> Dell
+                                    <input type="checkbox" class="flat" name="device_type[]" value="xiomi"> Xiomi
                                   </label>  <br> <br>
                                     <label>
-                                    <input type="checkbox" class="flat" checked="checked" name="vivo"> vivo
+                                    <input type="checkbox" class="flat" name="device_type[]" value="vivo"> vivo
                                   </label>
                                 </div>
                             </div>  <br>
@@ -168,10 +169,10 @@
                                 <h3>Component</h3>
                                 <div class="checkbox">
                                   <label>
-                                    <input type="checkbox" class="flat" name="screen"> Screen
+                                    <input type="checkbox" class="flat" name="component[]" value="screen"> Screen
                                   </label> <br> <br>
                                   <label>
-                                    <input type="checkbox" class="flat" checked="checked" name="battery"> Battery
+                                    <input type="checkbox" class="flat" name="component[]" value="battery"> Battery
                                   </label>
                                 </div>
                             </div>  <br>
@@ -179,26 +180,27 @@
                                 <h3>Category</h3>
                                 <div class="checkbox">
                                   <label>
-                                    <input type="checkbox" class="flat" name="new"> New
+                                    <input type="checkbox" class="flat" name="Category[]" value="new"> New
                                   </label> <br> <br>
                                   <label>
-                                    <input type="checkbox" class="flat" name="used"> Used
+                                    <input type="checkbox" class="flat" name="Category[]" value="used"> Used
                                   </label>
                                 </div>
                             </div>  <br>
                               
-                               <div class="">
+                              <div class="">
                                 
                                 <div class="">
                                   <label>
-                                    <input type="submit" class="btn btn-success" id="btnSave" value="Create"/>
+                                    <input type="submit" class="btn btn-success" id="btnSave" value="Filter"/>
                                   </label> <br> <br>
                                  
                                 </div>
                             </div>  <br>
                           
                          
-                          </form>
+                          
+                           {!! Form::close() !!}
                           
                           
                         </div>

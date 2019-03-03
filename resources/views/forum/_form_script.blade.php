@@ -11,30 +11,35 @@
             $(this).valid(); // trigger validation on this element
         });
 
-        var $componentForm = $('#component-form').validate({
+        var $forumForm = $('#forum-form').validate({
 
             errorClass: "parsley-error",
             validClass: "parsley-success",
 
             // Rules for form validation
             rules: {
-                name: {
+
+                title:{
                     required: true,
-                    maxlength: 100
-                },
-                lifetime: {
                     maxlength: 255
                 },
-                image: {
-                    // required: true,
+                problem:{
+                    required: true,
+                    maxlength: 2000
+                },
+                solution: {
+                    required: true,
+                    maxlength: 2000
+                },
+                component_id: {
+                    required: true
                 }
-
             },
 
             // Messages for form validation
             messages: {
                 name: {
-                    required: 'Please enter the component name'
+                    required: 'Please enter the forum name'
                 },
             },
 

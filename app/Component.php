@@ -30,5 +30,10 @@ class Component extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    public function forums()
+    {
+        return $this->hasMany(Forum::class);
+    }
     
 }
