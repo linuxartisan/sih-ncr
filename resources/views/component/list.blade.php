@@ -45,7 +45,8 @@
               
               <th>Name</th> <!-- 0 -->
               <th>Image</th> <!-- 1 -->
-             
+            <th>Lifetime (in years)</th>
+                
               <th>Created At</th> <!-- 2 -->
               <th>Updated At</th> <!-- 3 -->
               <th></th> <!-- 4 -->
@@ -58,7 +59,8 @@
                 
                 <td>{{ $component->name }}</td>
                 <td>{{ $component->image_path }}</td>
-                
+                <td>{{ $component->lifetime }}</td>
+                  
                 <td>{{ $component->created_at }}</td>
                 <td>{{ $component->updated_at }}</td>
                 <td>
@@ -102,11 +104,11 @@
         "responsive": true,
         "columnDefs": [
           {
-            "targets": [2, 3],
+            "targets": [3, 4],
             "orderable": false,
             "searchable": false
           },
-          { "className": 'none', "targets": [2, 3] }, // don't display as column, show in child row
+          { "className": 'none', "targets": [3, 4] }, // don't display as column, show in child row
           { "responsivePriority": 1, "targets": [0, 1, -1] }, // -1 is last column
         ],
       });

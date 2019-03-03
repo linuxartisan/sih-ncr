@@ -29,7 +29,11 @@
     <div class="col-lg-12">
         <div class="x_panel">
             <div class="x_title">
+                
                 <h2>Component <small>Edit</small></h2>
+                <div class="pull-right">
+                 <a class="btn btn-primary" href="{{ action('ComponentController@associateProductsShow', $component->id) }}">Associate Products</a>
+                </div>
             <div class="clearfix"></div>
             </div>
             <div class="x_content">

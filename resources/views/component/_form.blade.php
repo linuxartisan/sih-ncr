@@ -31,6 +31,21 @@
                 
                
         </div>
+         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="lifetime">Life Time
+            <span class="required">*</span>
+        </label>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            {!! Form::text('lifetime', null,
+                    [
+                        'class' => ['form-control'],
+                        'id' => 'lifetime',
+                        'placeholder' => '',
+                        'autocomplete' => 'off'
+                    ]) 
+            !!}
+                
+               
+        </div>
     </div>
 
 </div>

@@ -1,8 +1,11 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
-        
-        
+
+        // in edit form, for preselecting roles
+         @if(isset($component))
+            $('#product_id').val({{ $associated_product_ids }}).change();
+        @endif
 
         // search box display condition
         $('.select2').select2({
@@ -13,32 +16,27 @@
             $(this).valid(); // trigger validation on this element
         });
 
-        var $componentForm = $('#component-form').validate({
+        var $staffForm = $('#product_id').validate({
 
             errorClass: "parsley-error",
             validClass: "parsley-success",
 
             // Rules for form validation
             rules: {
-                name: {
+            
+                "product_id[]": {
                     required: true,
-                    maxlength: 100
-                },
-
-                image_path: {
-                    maxlength: 255
-                },
-                
-                lifetime: {
-                    maxlength: 255
-                },
+                }
             },
 
             // Messages for form validation
             messages: {
                 name: {
-                    required: 'Please enter the component name'
+                    required: 'Please enter the staff name'
                 },
+                "role_id[]": {
+                    required: 'Please select at least one role'
+                }
             },
 
             // Do not change code below

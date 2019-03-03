@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductComponentAssocTable extends Migration
+class CreateComponentProductAssocTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateProductComponentAssocTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_component_assoc', function (Blueprint $table) {
-            $table->unsignedInteger('product_id');
+        Schema::create('component_product_assoc', function (Blueprint $table) {
+             $table->unsignedInteger('product_id');
             $table->unsignedInteger('component_id');
             $table->timestamps();
 
@@ -37,6 +37,6 @@ class CreateProductComponentAssocTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_component_assoc');
+        Schema::dropIfExists('component_product_assoc');
     }
 }

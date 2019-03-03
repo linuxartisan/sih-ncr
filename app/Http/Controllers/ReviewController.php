@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Company;
-use App\Product;
-use Illuminate\Http\ProductRequest;
-use App\Workers\Services\ProductService;
+use App\Review;
+use Illuminate\Http\ReviewRequest;
+use App\Workers\Services\ReviewService;
 
 use Illuminate\Http\Request;
 
@@ -34,8 +34,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return view('product.list', compact('products'));
+        $reviews = Review::all();
+        return view('review.list', compact('reviews'));
     }
 
     /**
@@ -47,9 +47,9 @@ class ReviewController extends Controller
     {
        // $role_list = Role::pluck('name', 'id');
        $company_list = Company::pluck('name', 'id');
-       $product_type = config('producttype');
+       $review_type = config('reviewtype');
 
-       return view('product.create', compact('company_list', 'product_type'));
+       return view('review.create', compact('company_list', 'review_type'));
     }
 
     /**
@@ -62,27 +62,27 @@ class ReviewController extends Controller
     {
         $input = $request->all();
 
-        $product = new Product;
+        $review = new Review;
 
-        $service = new ProductService;
-        $status = $service->storeProduct($product, $input);
+        $service = new ReviewService;
+        $status = $service->storeReview($review, $input);
 
         if($status) {
-            Session::flash('success', 'Product created successfully.');
+            Session::flash('success', 'Review created successfully.');
         } else {
-            Session::flash('error', 'Failed to create Product. Please try again.');
+            Session::flash('error', 'Failed to create Review. Please try again.');
         }
 
-        return redirect(action('ProductController@index'));
+        return redirect(action('ReviewController@index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Review $review)
     {
         //
     }
@@ -90,17 +90,17 @@ class ReviewController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Review $review)
     {
         $company_list = Company::pluck('name', 'id');
-        $product_type = config('producttype');
+        $review_type = config('reviewtype');
 
         return view(
-            'product.edit',
-            compact('product', 'company_list', 'product_type')
+            'review.edit',
+            compact('review', 'company_list', 'review_type')
         );
     }
 
@@ -108,42 +108,42 @@ class ReviewController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
+     * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Review $review)
     {
         $input = $request->all();
 
-        $service = new ProductService;
-        $status = $service->updateProduct($product, $input);
+        $service = new ReviewService;
+        $status = $service->updateReview($review, $input);
 
         if($status) {
-            Session::flash('success', 'Product updated successfully.');
+            Session::flash('success', 'Review updated successfully.');
         } else {
-            Session::flash('error', 'Failed to update Product. Please try again.');
+            Session::flash('error', 'Failed to update Review. Please try again.');
         }
 
-        return redirect(action('ProductController@edit', $product->id));
+        return redirect(action('ReviewController@edit', $review->id));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Review $review)
     {
-        $service = new ProductService;
-        $status = $service->deleteProduct($product);
+        $service = new ReviewService;
+        $status = $service->deleteReview($review);
 
         if($status) {
-            Session::flash('success', 'Product deleted successfully.');
+            Session::flash('success', 'Review deleted successfully.');
         } else {
-            Session::flash('error', 'Failed to delete Product. Please try again.');
+            Session::flash('error', 'Failed to delete Review. Please try again.');
         }
 
-        return redirect(action('ProductController@index'));
+        return redirect(action('ReviewController@index'));
     }
 }

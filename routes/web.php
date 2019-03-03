@@ -19,10 +19,8 @@ Route::get('/show', function () {
     return view('components.show');
 });
 
-Route::get('/find_components', function () {
-    return view('repair_agencies.repair_list');
-});
-
+Route::get('/find_components', 'FilterController@filterShow');
+Route::post('/find_components', 'FilterController@filterGet');
 
 
 // Auth::routes();
@@ -32,9 +30,9 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('components/show', 'ComponentController@show');
 
-
+Route::get('/component/products/{component}', 'ComponentController@associateProductsShow');
+Route::post('/component/products/{component}/associate', 'ComponentController@associateProducts');
 
 
 /**

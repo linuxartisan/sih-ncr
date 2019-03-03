@@ -54,6 +54,12 @@ class ComponentRepository extends Repository
         return $status;
     }
 
+      public function associateProducts(Component &$component, $input)
+    {
+      
+       
+        $component->products()->sync($input['product_id']);
+    }
    
     /****************************
      * Helper functions
@@ -70,7 +76,9 @@ class ComponentRepository extends Repository
         
         $component->name = $input['name'];
         $component->image_path = $input['image_path'];
+        $component->lifetime = $input['lifetime'];
         
     }
 
+    
 }

@@ -44,5 +44,12 @@ class ComponentService extends Service
         $repository = new ComponentRepository;
         return $repository->updateComponent($component, $input);
     }
+    
+      public function associateProducts(Component &$component, $input)
+    {
+        $repository = new ComponentRepository;
+        return $repository->associateProducts($component, $input);
+    }
+    
 
 }

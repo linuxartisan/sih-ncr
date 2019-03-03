@@ -37,6 +37,9 @@ class CompanyRequest extends FormRequest
            'image_path' => [
                'max:255'
            ]
+            'lifetime' => [
+               'max:255'
+           ]
        ];
     }
 }

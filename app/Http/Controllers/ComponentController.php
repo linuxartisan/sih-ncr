@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Component;
+use App\Product;
 use Illuminate\Http\ComponentRequest;
 use App\Workers\Services\ComponentService;
 
@@ -82,7 +83,9 @@ class ComponentController extends Controller
      */
     public function show(Component $component)
     {
-        return view('components.show', compact('component'));
+         $exp=$component->created_at->addYear($component->lifetime);
+
+        return view('components.show', compact('component','exp'));
     }
 
     /**
@@ -140,5 +143,31 @@ class ComponentController extends Controller
         }
 
         return redirect(action('ComponentController@index'));
+    }
+    
+    public function associateComponents(Request $request, Product $product)
+    {
+        $input = $request->all();
+        dd($input);
+    }
+    
+     public function associateComponentsShow(Product $product)
+    {
+        $component_list=Component::pluck('name','id'); 
+        return view('manufacturer.product_components', compact('product','component_list' ));
+    }
+    
+    public function associateProducts(Request $request, Component $component)
+    {
+        $input = $request->all();
+        $component->products()->sync($input['product_id']);
+        return redirect()->back();
+    }
+
+    public function associateProductsShow(Component $component)
+    {
+        $product_list=Product::pluck('name','id');
+        $associated_product_ids = $component->products()->pluck('product_id');
+        return view('manufacturer.component_products', compact('component','product_list', 'associated_product_ids' ));
     }
 }

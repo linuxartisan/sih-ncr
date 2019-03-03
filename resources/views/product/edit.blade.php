@@ -30,6 +30,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Product <small>Edit</small></h2>
+               
             <div class="clearfix"></div>
             </div>
             <div class="x_content">
