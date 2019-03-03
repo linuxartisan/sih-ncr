@@ -11,7 +11,7 @@
             $(this).valid(); // trigger validation on this element
         });
 
-        var $componentForm = $('#component-form').validate({
+        var $forumForm = $('#forum-form').validate({
 
             errorClass: "parsley-error",
             validClass: "parsley-success",
@@ -19,8 +19,11 @@
             // Rules for form validation
             rules: {
 
-
-                problems:{
+                title:{
+                    required: true,
+                    maxlength: 255
+                },
+                problem:{
                     required: true,
                     maxlength: 2000
                 },

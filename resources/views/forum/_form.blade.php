@@ -1,6 +1,23 @@
 <div class="card-body card-block">
     <div class="row form-group">
 
+        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="problem">Title
+            <span class="required">*</span>
+        </label>
+        <div class="col-md-10 col-sm-10 col-xs-12">
+            
+            {!! Form::text('title', null,
+                    [
+                        'class' => ['form-control'],
+                        'id' => 'title',
+                        'placeholder' => '',
+                        'autocomplete' => 'off'
+                    ]) 
+            !!}
+        </div>
+    </div>
+    <div class="row form-group">
+
         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="problem">Problem
             <span class="required">*</span>
         </label>

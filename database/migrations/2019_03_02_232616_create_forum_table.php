@@ -15,6 +15,7 @@ class CreateForumTable extends Migration
     {
         Schema::create('forums', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title');
             $table->text('problem');
             $table->text('solution');
             $table->unsignedInteger('component_id');
@@ -31,6 +32,6 @@ class CreateForumTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forum');
+        Schema::dropIfExists('forums');
     }
 }

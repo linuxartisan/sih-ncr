@@ -43,6 +43,7 @@
           <thead>
             <tr>
               
+              <th>Title</th>
               <th>Problem</th> <!-- 0 -->
               <th>Solution</th> <!-- 1 -->
               <th>Component</th><!-- 2 -->
@@ -55,7 +56,7 @@
           <tbody>
             @foreach($forums as $forum)
               <tr>
-                
+                <td>{{ $forum->title }}</td>
                 <td>{{ $forum->problem }}</td>
                 <td>{{ $forum->solution }}</td>
                 <td>{{ $forum->component->name }}</td>
@@ -103,11 +104,11 @@
         "responsive": true,
         "columnDefs": [
           {
-            "targets": [3, 4],
+            "targets": [4, 5],
             "orderable": false,
             "searchable": false
           },
-          { "className": 'none', "targets": [3, 4] }, // don't display as column, show in child row
+          { "className": 'none', "targets": [4, 5] }, // don't display as column, show in child row
           { "responsivePriority": 1, "targets": [0, 1, -1] }, // -1 is last column
         ],
       });

@@ -28,7 +28,10 @@ class ProductRequest extends FormRequest
        $forum = $this->route('forum');
 
        return [
-           
+           'title' => [
+               'required',
+               'max:255',
+           ],
            'problem' => [
                'required',
                'max:2000',

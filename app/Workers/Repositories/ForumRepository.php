@@ -68,6 +68,7 @@ class ForumRepository extends Repository
     protected function populateFields(Forum &$forum, $input)
     {
 
+        $forum->title = $input['title'];
         $forum->problem = $input['problem'];
         $forum->solution = $input['solution'];
         $forum->component_id = $input['component_id'];
