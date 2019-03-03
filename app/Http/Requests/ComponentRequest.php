@@ -34,8 +34,8 @@ class ComponentRequest extends FormRequest
                'max:100',
                Rule::unique('components', 'name')->ignore(@$component->id)
            ],
-           'image_path' => [
-               'max:255'
+           'image' => [
+               'image' => 'mimes:jpeg,bmp,png',
            ]
        ];
     }

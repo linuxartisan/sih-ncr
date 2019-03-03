@@ -34,7 +34,7 @@
             </div>
             <div class="x_content">
                 <br />
-              <img src="{{ URL::asset('/images/images1/img1.png') }}" width="150px" height="auto">
+              <img src="{{ action('ComponentController@getImage', $component->id) }}" width="150px" height="auto">
             </div>
         </div>
     </div>

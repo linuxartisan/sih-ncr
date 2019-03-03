@@ -23,26 +23,26 @@ class ComponentService extends Service
      * Create and store a new component record.
      *
      * @param \App\Component &$component
-     * @param array $input
+     * @param array $request
      * @return boolean
      */
-    public function storeComponent(Component &$component, $input)
+    public function storeComponent(Component &$component, $request)
     {
         $repository = new ComponentRepository;
-        return $repository->storeComponent($component, $input);
+        return $repository->storeComponent($component, $request);
     }
 
     /**
      * Update an existing component record.
      *
      * @param \App\Component &$component
-     * @param array $input
+     * @param array $request
      * @return boolean
      */
-    public function updateComponent(Component &$component, $input)
+    public function updateComponent(Component &$component, $request)
     {
         $repository = new ComponentRepository;
-        return $repository->updateComponent($component, $input);
+        return $repository->updateComponent($component, $request);
     }
 
 }

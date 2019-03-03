@@ -7,7 +7,7 @@ use App\Http\Requests\ComponentRequest;
 use App\Workers\Services\ComponentService;
 
 use Illuminate\Http\Request;
-
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -112,10 +112,10 @@ class ComponentController extends Controller
      */
     public function update(ComponentRequest $request, Component $component)
     {
-        $input = $request->all();
-
+        // $input = $request->all();
+        // dd($request->file('image'));
         $service = new ComponentService;
-        $status = $service->updateComponent($component, $input);
+        $status = $service->updateComponent($component, $request);
 
         if($status) {
             Session::flash('success', 'Component updated successfully.');
@@ -146,13 +146,25 @@ class ComponentController extends Controller
         return redirect(action('ComponentController@index'));
     }
 
+    /**
+     * Shows the image
+     */
     public function showImage(Component $component)
     {
+
         return view(
             'component.showImage',
             compact('component')
 
            );
+    }
+
+    /**
+     * Retrueves the image
+     */
+    public function getImage(Component $component)
+    {
+        return Image::make(storage_path() . $component->image_path)->response();
     }
 
 }

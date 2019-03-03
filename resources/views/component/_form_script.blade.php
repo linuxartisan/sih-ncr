@@ -23,8 +23,8 @@
                     maxlength: 100
                 },
 
-                image_path: {
-                    maxlength: 255
+                image: {
+                    // required: true,
                 }
             },
 
