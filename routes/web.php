@@ -33,3 +33,5 @@ Route::resource('products', 'ProductController');
 
 Route::get('users/password/change', 'UserController@showPasswordChangeForm');
 Route::post('users/password/change', 'UserController@changePassword');
+
+Route::get('component/image', 'ComponentController@showImage');

@@ -29,10 +29,22 @@ class ComponentRepository extends Repository
     * @param  array $input
     * @return boolean
     */
-    public function storeComponent(Component &$component, $input)
+    public function storeComponent(Component &$component, $request)
     {
-        $this->populateFields($component, $input);
+        $this->populateFields($component, $request);
+        
+        $component->save();
+        $imageName = $component->id . '.' . 
+            $request->file('image')->getClientOriginalExtension();
+       
+        $image_path = storage_path() . '/app/public/images/component/';
+        $request->file('image')->move($image_path, $imageName);
+        
 
+        $full_file_name = $image_path . $imageName;
+        
+
+        $component->image_path = $full_file_name;
         $status = $component->save();
 
         return $status;
@@ -65,11 +77,11 @@ class ComponentRepository extends Repository
      * @param  \App\Component  &$component
      * @param  array  $input
      */
-    protected function populateFields(Component &$component, $input)
+    protected function populateFields(Component &$component, $request)
     {
         
-        $component->name = $input['name'];
-        $component->image_path = $input['image_path'];
+        $component->name = $request->get('name');
+        // $component->image_path = $input['image_path'];
         
     }
 
