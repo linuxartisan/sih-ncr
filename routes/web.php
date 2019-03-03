@@ -44,6 +44,8 @@ Route::resource('users', 'UserController');
 Route::resource('companies', 'CompanyController');
 Route::resource('components', 'ComponentController');
 Route::resource('products', 'ProductController');
+Route::resource('reviews', 'ReviewController');
+Route::resource('forums', 'ForumController');
 
 
 // charts

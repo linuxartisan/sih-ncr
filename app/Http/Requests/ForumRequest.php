@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ReviewRequest extends FormRequest
+class ProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,18 +24,21 @@ class ReviewRequest extends FormRequest
      */
     public function rules()
     {
-       // get the current review object
-       $review = $this->route('review');
+       // get the current forum object
+       $forum = $this->route('forum');
 
        return [
            
+           'problem' => [
+               'required',
+               'max:2000',
+           ],
+           'solution' => [
+               'required',
+               'max:2000',
+            ],
            'component_id' => [
                'required'
-           ],
-          
-           'rating' => [
-               'required',
-               'max:255'
            ]
         ];
     }

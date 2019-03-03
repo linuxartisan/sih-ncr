@@ -60,14 +60,25 @@
                         </ul>
                       </li>
                         @endif
+                      
                       <li class="{{ $current_path == 'companies' ? 'current-page' : '' }}">
                         <a href="{{ action('CompanyController@index') }}">Company</a>
                       </li>
+                      
                       <li class="{{ $current_path == 'components' ? 'current-page' : '' }}">
                         <a href="{{ action('ComponentController@index') }}">Components</a>
                       </li>
+                      
                       <li class="{{ $current_path == 'products' ? 'current-page' : '' }}">
                         <a href="{{ action('ProductController@index') }}">Products</a>
+                      </li>
+
+                      <li class="{{ $current_path == 'reviews' ? 'current-page' : '' }}">
+                        <a href="{{ action('ReviewController@index') }}">Review</a>
+                      </li>
+
+                      <li class="{{ $current_path == 'forums' ? 'current-page' : '' }}">
+                        <a href="{{ action('ForumController@index') }}">Forum</a>
                       </li>
                       <!-- more links heres -->
                     </ul>

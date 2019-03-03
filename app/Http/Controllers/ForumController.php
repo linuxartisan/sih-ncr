@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Component;
-use App\Review;
-use Illuminate\Http\ReviewRequest;
-use App\Workers\Services\ReviewService;
+use App\Forum;
+use Illuminate\Http\ForumRequest;
+use App\Workers\Services\ForumService;
 
 use Illuminate\Http\Request;
 
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
 
-class ReviewController extends Controller
+class ForumController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -34,8 +34,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::all();
-        return view('review.list', compact('reviews'));
+        $forums = Forum::all();
+        return view('forum.list', compact('forums'));
     }
 
     /**
@@ -47,9 +47,8 @@ class ReviewController extends Controller
     {
        // $role_list = Role::pluck('name', 'id');
        $component_list = Component::pluck('name', 'id');
-       $review_type = config('reviewtype');
 
-       return view('review.create', compact('component_list', 'review_type'));
+       return view('forum.create', compact('component_list'));
     }
 
     /**
@@ -61,28 +60,28 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        // dd($input);
+        $forum = new Forum;
 
-        $review = new Review;
-
-        $service = new ReviewService;
-        $status = $service->storeReview($review, $input);
+        $service = new ForumService;
+        $status = $service->storeForum($forum, $input);
 
         if($status) {
-            Session::flash('success', 'Review created successfully.');
+            Session::flash('success', 'Forum created successfully.');
         } else {
-            Session::flash('error', 'Failed to create Review. Please try again.');
+            Session::flash('error', 'Failed to create Forum. Please try again.');
         }
 
-        return redirect(action('ReviewController@index'));
+        return redirect(action('ForumController@index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Review  $review
+     * @param  \App\Forum  $forum
      * @return \Illuminate\Http\Response
      */
-    public function show(Review $review)
+    public function show(Forum $forum)
     {
         //
     }
@@ -90,17 +89,17 @@ class ReviewController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Review  $review
+     * @param  \App\Forum  $forum
      * @return \Illuminate\Http\Response
      */
-    public function edit(Review $review)
+    public function edit(Forum $forum)
     {
         $component_list = Component::pluck('name', 'id');
-        $review_type = config('reviewtype');
+        
 
         return view(
-            'review.edit',
-            compact('review', 'component_list', 'review_type')
+            'forum.edit',
+            compact('forum', 'component_list')
         );
     }
 
@@ -108,42 +107,42 @@ class ReviewController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Review  $review
+     * @param  \App\Forum  $forum
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Review $review)
+    public function update(Request $request, Forum $forum)
     {
         $input = $request->all();
 
-        $service = new ReviewService;
-        $status = $service->updateReview($review, $input);
+        $service = new ForumService;
+        $status = $service->updateForum($forum, $input);
 
         if($status) {
-            Session::flash('success', 'Review updated successfully.');
+            Session::flash('success', 'Forum updated successfully.');
         } else {
-            Session::flash('error', 'Failed to update Review. Please try again.');
+            Session::flash('error', 'Failed to update Forum. Please try again.');
         }
 
-        return redirect(action('ReviewController@edit', $review->id));
+        return redirect(action('ForumController@edit', $forum->id));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Review  $review
+     * @param  \App\Forum  $forum
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy(Forum $forum)
     {
-        $service = new ReviewService;
-        $status = $service->deleteReview($review);
+        $service = new ForumService;
+        $status = $service->deleteForum($forum);
 
         if($status) {
-            Session::flash('success', 'Review deleted successfully.');
+            Session::flash('success', 'Forum deleted successfully.');
         } else {
-            Session::flash('error', 'Failed to delete Review. Please try again.');
+            Session::flash('error', 'Failed to delete Forum. Please try again.');
         }
 
-        return redirect(action('ReviewController@index'));
+        return redirect(action('ForumController@index'));
     }
 }
